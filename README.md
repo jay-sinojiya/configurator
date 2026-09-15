@@ -95,10 +95,3 @@ No `X-Frame-Options`/`frame-ancestors` restriction is set (see `vite.config.ts`)
 | Image upload → data URL | Upload to object storage, store the resulting URL |
 
 Everything on the left talks to the app through the exact same typed contract (`src/types/pricing.ts`, `src/types/shopify.ts`) it would use in production, which is the actual point of structuring it this way.
-
-## Trade-offs given the ~8–10h scope
-
-- One real product (the tent) is implemented in full; the reusability claim is demonstrated through the type/registry design rather than a second product, to keep scope honest.
-- No automated test suite — verification was done by driving the running app end-to-end (2D edits reflected in 3D, variant/frame/quantity changes, add-to-cart, PDF export, mobile layout) rather than writing unit tests, given the time budget. `src/engine/{renderLayout,pricingEngine}.ts` are pure functions specifically so they're cheap to unit test later.
-- Image uploads are stored as data URLs in the configuration record for simplicity; noted above as the one thing to swap for real storage before production.
-# configurator
